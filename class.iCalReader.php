@@ -78,11 +78,27 @@ class ICal
      */ 
     public function initLines($lines)
     {
+        //stitch together any lines broken over two lines: https://www.ietf.org/rfc/rfc2445.txt (4.1)        
+        $newLines = array();
+        for($i = 0; $i < count($lines); $i++)
+        {   
+            if($lines[$i][0] == " ")
+            {                
+                $newLines[$i - 1] = $newLines[$i - 1] . substr($lines[$i], 1);
+            }
+            else
+            {
+                $newLines[$i] = $lines[$i]; 
+            }
+        }
+        $lines = $newLines;
+        
         if (stristr($lines[0], 'BEGIN:VCALENDAR') === false) {
             return false;
         } else {
             // TODO: Fix multiline-description problem (see http://tools.ietf.org/html/rfc2445#section-4.8.1.5)
             foreach ($lines as $line) {
+                //ajax_debug($line);
                 $line = trim($line);
                 $add  = $this->keyValueFromString($line);
                 if ($add === false) {
