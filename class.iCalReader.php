@@ -53,16 +53,16 @@ class ICal
      *
      * @return Object The iCal-Object
      */ 
-    public function __construct($filename) 
+    public function __construct($filename, $context=null) 
     {
         if (!$filename) {
             return false;
-        }
-
+        }      
+        
         if (is_array($filename)){
             $lines = $filename;
-        } else {
-            $lines = file($filename, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        } else {                                 
+            $lines = file($filename, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES, $context);
         }
         	
         return $this->initLines($lines);
