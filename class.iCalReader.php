@@ -408,14 +408,14 @@ class ICal
                             }
                         } else {
                             $day = date('d',$start_timestamp);
-                            // Step throuhg years adding specific month dates
+                            // Step through years adding specific month dates
                             while ($recurring_timestamp <= $until) {
                                 $event_start_desc = "$day {$month_names[$rrules['BYMONTH']]} ".date('Y',$recurring_timestamp)." ".date('H:i:s',$recurring_timestamp);
                                 $event_start_timestamp = strtotime($event_start_desc);
                                 if ($event_start_timestamp > $start_timestamp && $event_start_timestamp < $until) {
                                     $anEvent['DTSTART'] = date('Ymd\T',$event_start_timestamp).$start_time;
-                                    $anEvent['DTEND'] = date('Ymd\THis',$this->iCalDateToUnixTimestamp($anEvent['DTSTART'])+$event_timestmap_offset);
-                                    if (!in_array($anEvent['DTSTART'], $anEvent['EXDATE_array'])) {
+                                    $anEvent['DTEND'] = date('Ymd\THis',$this->iCalDateToUnixTimestamp($anEvent['DTSTART'])+$event_timestmap_offset);                                    
+                                    if ((array_key_exists('DTSTART', $anEvent)) && (array_key_exists('EXDATE_array', $anEvent)) && (!in_array($anEvent['DTSTART'], $anEvent['EXDATE_array']))) {
                                         $events[] = $anEvent;
                                     }
                                 }
