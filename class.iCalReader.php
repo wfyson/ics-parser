@@ -129,6 +129,7 @@ class ICal
                     
                     //all other special strings
                     case "BEGIN:VCALENDAR": 
+                    case "BEGIN:VALARM": 
                     case "BEGIN:DAYLIGHT": 
                         // http://www.kanzaki.com/docs/ical/vtimezone.html
                     case "BEGIN:VTIMEZONE": 
@@ -138,7 +139,8 @@ class ICal
                     case "END:VTODO": // end special text - goto VCALENDAR key 
                     case "END:VEVENT": 
                     case "END:VFREEBUSY": 
-                    case "END:VCALENDAR": 
+                    case "END:VCALENDAR":
+                    case "END:VALARM": 
                     case "END:DAYLIGHT": 
                     case "END:VTIMEZONE": 
                     case "END:STANDARD": 
