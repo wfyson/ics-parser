@@ -300,7 +300,7 @@ class ICal
                             // Add event
                             $anEvent['DTSTART'] = date('Ymd\THis',$recurring_timestamp);
                             $anEvent['DTEND'] = date('Ymd\THis',$recurring_timestamp+$event_timestmap_offset);
-                            if (!in_array($anEvent['DTSTART'], $anEvent['EXDATE_array'])) {
+                            if ((array_key_exists('DTSTART', $anEvent)) && (array_key_exists('EXDATE_array', $anEvent)) && (!in_array($anEvent['DTSTART'], $anEvent['EXDATE_array']))) {
                                 $events[] = $anEvent;
                             }
                             // Move forward
@@ -331,7 +331,7 @@ class ICal
                                     // Add event to day
                                     $anEvent['DTSTART'] = date('Ymd\THis',$day_recurring_timestamp);
                                     $anEvent['DTEND'] = date('Ymd\THis',$day_recurring_timestamp+$event_timestmap_offset);
-                                    if (!in_array($anEvent['DTSTART'], $anEvent['EXDATE_array'])) {
+                                    if ((array_key_exists('DTSTART', $anEvent)) && (array_key_exists('EXDATE_array', $anEvent)) && (!in_array($anEvent['DTSTART'], $anEvent['EXDATE_array']))) {
                                         $events[] = $anEvent;
                                     }
                                 }
@@ -352,7 +352,7 @@ class ICal
                                 // Add event
                                 $anEvent['DTSTART'] = date('Ym'.sprintf('%02d',$rrules['BYMONTHDAY']).'\THis',$recurring_timestamp);
                                 $anEvent['DTEND'] = date('Ymd\THis',$this->iCalDateToUnixTimestamp($anEvent['DTSTART'])+$event_timestmap_offset);
-                                if (!in_array($anEvent['DTSTART'], $anEvent['EXDATE_array'])) {
+                                if ((array_key_exists('DTSTART', $anEvent)) && (array_key_exists('EXDATE_array', $anEvent)) && (!in_array($anEvent['DTSTART'], $anEvent['EXDATE_array']))) {
                                     $events[] = $anEvent;
                                 }
                                 // Move forward
@@ -371,7 +371,7 @@ class ICal
                                 if ($event_start_timestamp > $start_timestamp && $event_start_timestamp < $until) {
                                     $anEvent['DTSTART'] = date('Ymd\T',$event_start_timestamp).$start_time;
                                     $anEvent['DTEND'] = date('Ymd\THis',$this->iCalDateToUnixTimestamp($anEvent['DTSTART'])+$event_timestmap_offset);
-                                    if (!in_array($anEvent['DTSTART'], $anEvent['EXDATE_array'])) {
+                                    if ((array_key_exists('DTSTART', $anEvent)) && (array_key_exists('EXDATE_array', $anEvent)) && (!in_array($anEvent['DTSTART'], $anEvent['EXDATE_array']))) {
                                         $events[] = $anEvent;
                                     }
                                 }
@@ -401,7 +401,7 @@ class ICal
                                 if ($event_start_timestamp > $start_timestamp && $event_start_timestamp < $until) {
                                     $anEvent['DTSTART'] = date('Ymd\T',$event_start_timestamp).$start_time;
                                     $anEvent['DTEND'] = date('Ymd\THis',$this->iCalDateToUnixTimestamp($anEvent['DTSTART'])+$event_timestmap_offset);
-                                    if (!in_array($anEvent['DTSTART'], $anEvent['EXDATE_array'])) {
+                                    if ((array_key_exists('DTSTART', $anEvent)) && (array_key_exists('EXDATE_array', $anEvent)) && (!in_array($anEvent['DTSTART'], $anEvent['EXDATE_array']))) {
                                         $events[] = $anEvent;
                                     }
                                 }
